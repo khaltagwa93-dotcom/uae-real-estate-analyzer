@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>محلل السوق العقاري الإماراتي | UAE Real Estate Market Analyzer</title>
+  <meta name="description" content="أداة تحليل سوق عقاري متكاملة لدبي والإمارات - أسعار، عوائد إيجارية، مقارنات مناطق، حاسبات استثمار" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            arabic: ['Cairo', 'sans-serif'],
+            sans: ['Inter', 'Cairo', 'sans-serif']
+          },
+          colors: {
+            gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+            dubai: { 900: '#0f172a', 800: '#1e293b', 700: '#334155' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Cairo', 'Inter', sans-serif; }
+    [dir="ltr"] body { font-family: 'Inter', 'Cairo', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%); }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .chart-container { position: relative; height: 280px; }
+    .lang-btn.active { background: #f59e0b; color: #0f172a; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <header class="gradient-bg border-b border-slate-700/50 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-bold text-slate-900 text-lg">ع</div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight" data-ar="محلل السوق العقاري الإماراتي" data-en="UAE Real Estate Analyzer">محلل السوق العقاري الإماراتي</h1>
+          <p class="text-xs text-slate-400" data-ar="بيانات حقيقية • دبي والامارات • 2025-2026" data-en="Real Data • Dubai & UAE • 2025-2026">بيانات حقيقية • دبي والامارات • 2025-2026</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="langAr" class="lang-btn active px-3 py-1.5 rounded-lg text-sm font-semibold bg-amber-500 text-slate-900">العربية</button>
+        <button id="langEn" class="lang-btn px-3 py-1.5 rounded-lg text-sm font-semibold bg-slate-700 hover:bg-slate-600">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8 space-y-10">
+    <section>
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <span class="w-2 h-8 bg-amber-500 rounded-full"></span>
+        <span data-ar="لمحة السوق الحالية (دبي 2026)" data-en="Current Market Snapshot (Dubai 2026)">لمحة السوق الحالية (دبي 2026)</span>
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card-hover bg-slate-900/80 border border-slate-700/60 rounded-2xl p-5">
+          <p class="text-slate-400 text-sm mb-1" data-ar="متوسط السعر / قدم²" data-en="Avg Price / sqft">متوسط السعر / قدم²</p>
+          <p class="text-3xl font-bold text-amber-400">AED 1,680</p>
+          <p class="text-xs text-slate-500 mt-1" data-ar="أغسطس 2026 • -2.4% سنوياً" data-en="Aug 2026 • -2.4% YoY">أغسطس 2026 • -2.4% سنوياً</p>
+        </div>
+        <div class="card-hover bg-slate-900/80 border border-slate-700/60 rounded-2xl p-5">
+          <p class="text-slate-400 text-sm mb-1" data-ar="العائد الإيجاري الإجمالي" data-en="Gross Rental Yield">العائد الإيجاري الإجمالي</p>
+          <p class="text-3xl font-bold text-emerald-400">6.5–6.9%</p>
+          <p class="text-xs text-slate-500 mt-1" data-ar="شقق • من أعلى العوائد عالمياً" data-en="Apartments • Among highest globally">شقق • من أعلى العوائد عالمياً</p>
+        </div>
+        <div class="card-hover bg-slate-900/80 border border-slate-700/60 rounded-2xl p-5">
+          <p class="text-slate-400 text-sm mb-1" data-ar="حجم المعاملات (H1 2026)" data-en="Transactions (H1 2026)">حجم المعاملات (H1 2026)</p>
+          <p class="text-3xl font-bold text-sky-400">79,300</p>
+          <p class="text-xs text-slate-500 mt-1" data-ar="قيمة ≈ 221 مليار درهم" data-en="Value ≈ AED 221B">قيمة ≈ 221 مليار درهم</p>
+        </div>
+        <div class="card-hover bg-slate-900/80 border border-slate-700/60 rounded-2xl p-5">
+          <p class="text-slate-400 text-sm mb-1" data-ar="وحدات جديدة (H1 2026)" data-en="New Units Delivered (H1)">وحدات جديدة (H1 2026)</p>
+          <p class="text-3xl font-bold text-violet-400">24,800</p>
+          <p class="text-xs text-slate-500 mt-1" data-ar="+37.6% مقارنة بنفس الفترة" data-en="+37.6% vs same period">+37.6% مقارنة بنفس الفترة</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 mt-4" data-ar="المصادر: دائرة الأراضي والأملاك (DLD)، Cavendish Maxwell، ValuStrat، REIDIN • بيانات حتى أغسطس/سبتمبر 2026" data-en="Sources: DLD, Cavendish Maxwell, ValuStrat, REIDIN • Data up to Aug/Sep 2026">المصادر: دائرة الأراضي والأملاك (DLD)، Cavendish Maxwell، ValuStrat، REIDIN • بيانات حتى أغسطس/سبتمبر 2026</p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+        <span class="w-2 h-8 bg-amber-500 rounded-full"></span>
+        <span data-ar="مقارنة المناطق الرئيسية" data-en="Key Areas Comparison">مقارنة المناطق الرئيسية</span>
+      </h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-700/60">
+        <table class="w-full text-sm text-right">
+          <thead class="bg-slate-800/80 text-slate-300">
+            <tr>
+              <th class="px-4 py-3 font-semibold" data-ar="المنطقة" data-en="Area">المنطقة</th>
+              <th class="px-4 py-3 font-semibold" data-ar="متوسط السعر/قدم²" data-en="Avg AED/sqft">متوسط السعر/قدم²</th>
+              <th class="px-4 py-3 font-semibold" data-ar="العائد التقريبي" data-en="Approx. Yield">العائد التقريبي</th>
+              <th class="px-4 py-3 font-semibold" data-ar="النوع الأفضل" data-en="Best For">النوع الأفضل</th>
+              <th class="px-4 py-3 font-semibold" data-ar="ملاحظة 2026" data-en="2026 Note">ملاحظة 2026</th>
+            </tr>
+          </thead>
+          <tbody id="areasTable" class="divide-y divide-slate-800"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-slate-900/80 border border-slate-700/60 rounded-2xl p-5">
+        <h3 class="font-bold mb-4" data-ar="اتجاه متوسط السعر (دبي)" data-en="Dubai Avg Price Trend">اتجاه متوسط السعر (دبي)</h3>
+        <div class="chart-container">
+          <canvas id="priceChart"></canvas>
+        </div>
+      </div>
+      <div class="bg-slate-900/80 border border-slate-700/60 rounded-2xl p-5">
+        <h3 class="font-bold mb-4" data-ar="عوائد إيجارية حسب المنطقة" data-en="Yields by Area">عوائد إيجارية حسب المنطقة</h3>
+        <div class="chart-container">
+          <canvas id="yieldChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-slate-900/80 border border-slate-700/60 rounded-2xl p-6">
+        <h3 class="text-xl font-bold mb-4 text-amber-400" data-ar="حاسبة العائد الإيجاري" data-en="Rental Yield Calculator">حاسبة العائد الإيجاري</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm text-slate-400 mb-1" data-ar="سعر الشراء (درهم)" data-en="Purchase Price (AED)">سعر الشراء (درهم)</label>
+            <input type="number" id="purchasePrice" value="1800000" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+          </div>
+          <div>
+            <label class="block text-sm text-slate-400 mb-1" data-ar="الإيجار السنوي المتوقع (درهم)" data-en="Expected Annual Rent (AED)">الإيجار السنوي المتوقع (درهم)</label>
+            <input type="number" id="annualRent" value="120000" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+          </div>
+          <div>
+            <label class="block text-sm text-slate-400 mb-1" data-ar="رسوم الخدمة السنوية (درهم)" data-en="Annual Service Charges (AED)">رسوم الخدمة السنوية (درهم)</label>
+            <input type="number" id="serviceCharges" value="18000" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+          </div>
+          <button onclick="calcYield()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 rounded-xl transition">احسب العائد</button>
+          <div id="yieldResult" class="hidden mt-4 p-4 bg-slate-800/80 rounded-xl text-center">
+            <p class="text-slate-400 text-sm" data-ar="العائد الإجمالي / الصافي" data-en="Gross / Net Yield">العائد الإجمالي / الصافي</p>
+            <p class="text-3xl font-bold text-emerald-400 mt-1"><span id="grossYield">—</span>% / <span id="netYield">—</span>%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-700/60 rounded-2xl p-6">
+        <h3 class="text-xl font-bold mb-4 text-sky-400" data-ar="تقدير التدفق النقدي السنوي" data-en="Annual Cashflow Estimator">تقدير التدفق النقدي السنوي</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm text-slate-400 mb-1" data-ar="الدفعة الأولى %" data-en="Down Payment %">الدفعة الأولى %</label>
+            <input type="number" id="downPct" value="20" min="0" max="100" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500" />
+          </div>
+          <div>
+            <label class="block text-sm text-slate-400 mb-1" data-ar="نسبة الفائدة السنوية على القرض %" data-en="Mortgage Interest Rate %">نسبة الفائدة السنوية على القرض %</label>
+            <input type="number" id="interestRate" value="4.7" step="0.1" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500" />
+          </div>
+          <div>
+            <label class="block text-sm text-slate-400 mb-1" data-ar="مدة القرض (سنوات)" data-en="Loan Term (Years)">مدة القرض (سنوات)</label>
+            <input type="number" id="loanYears" value="25" class="w-full bg-slate-800 border border-slate-600 rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500" />
+          </div>
+          <button onclick="calcCashflow()" class="w-full bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold py-3 rounded-xl transition">احسب التدفق</button>
+          <div id="cashResult" class="hidden mt-4 p-4 bg-slate-800/80 rounded-xl space-y-2 text-sm">
+            <div class="flex justify-between"><span data-ar="القسط الشهري التقريبي" data-en="Est. Monthly Payment">القسط الشهري التقريبي</span><span id="monthlyPay" class="font-bold">—</span></div>
+            <div class="flex justify-between"><span data-ar="الإيجار الشهري" data-en="Monthly Rent">الإيجار الشهري</span><span id="monthlyRent" class="font-bold">—</span></div>
+            <div class="flex justify-between border-t border-slate-700 pt-2"><span data-ar="التدفق النقدي الشهري التقريبي" data-en="Est. Monthly Cashflow">التدفق النقدي الشهري التقريبي</span><span id="monthlyCash" class="font-bold text-emerald-400">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700/60 rounded-2xl p-6">
+      <h2 class="text-xl font-bold mb-4" data-ar="رؤى السوق 2026" data-en="2026 Market Insights">رؤى السوق 2026</h2>
+      <ul class="space-y-3 text-slate-300 text-sm leading-relaxed">
+        <li class="flex gap-3"><span class="text-amber-400">●</span> <span data-ar="السوق ينتقل من مرحلة الارتفاع السريع إلى مرحلة أكثر نضجاً: الأسعار مستقرة أو منخفضة قليلاً بينما الحجم لا يزال قوياً." data-en="Market shifting from rapid appreciation to a more mature phase: prices stable/slightly lower while volumes remain strong.">السوق ينتقل من مرحلة الارتفاع السريع إلى مرحلة أكثر نضجاً: الأسعار مستقرة أو منخفضة قليلاً بينما الحجم لا يزال قوياً.</span></li>
+        <li class="flex gap-3"><span class="text-amber-400">●</span> <span data-ar="أكثر من 75% من المبيعات في أغسطس كانت أوف بلان، مما يشير إلى استمرار قوة المطورين." data-en="Over 75% of August sales were off-plan, showing continued developer strength.">أكثر من 75% من المبيعات في أغسطس كانت أوف بلان، مما يشير إلى استمرار قوة المطورين.</span></li>
+        <li class="flex gap-3"><span class="text-amber-400">●</span> <span data-ar="أعلى العوائد في المناطق المتوسطة: International City، Silicon Oasis، Dubai South، JVC (7–9%)." data-en="Highest yields in mid-market areas: International City, Silicon Oasis, Dubai South, JVC (7–9%).">أعلى العوائد في المناطق المتوسطة: International City، Silicon Oasis، Dubai South، JVC (7–9%).</span></li>
+        <li class="flex gap-3"><span class="text-amber-400">●</span> <span data-ar="لا توجد ضريبة على الإيجار أو أرباح رأس المال في الإمارات — ميزة تنافسية كبيرة للمستثمرين." data-en="No tax on rental income or capital gains in the UAE — a major competitive advantage.">لا توجد ضريبة على الإيجار أو أرباح رأس المال في الإمارات — ميزة تنافسية كبيرة للمستثمرين.</span></li>
+        <li class="flex gap-3"><span class="text-amber-400">●</span> <span data-ar="التوريد المتوقع 2026-2028 كبير (مئات الآلاف من الوحدات)، خاصة في JVC و Dubai South و Business Bay." data-en="Large supply pipeline 2026-2028 (hundreds of thousands of units), especially in JVC, Dubai South & Business Bay.">التوريد المتوقع 2026-2028 كبير (مئات الآلاف من الوحدات)، خاصة في JVC و Dubai South و Business Bay.</span></li>
+      </ul>
+    </section>
+
+    <footer class="text-center text-xs text-slate-500 pb-8 space-y-2">
+      <p data-ar="هذه الأداة لأغراض معلوماتية فقط وليست نصيحة استثمارية. البيانات مبنية على تقارير عامة من DLD وشركات استشارية حتى سبتمبر 2026." data-en="This tool is for informational purposes only and is not investment advice. Data based on public DLD and consultancy reports up to Sep 2026.">هذه الأداة لأغراض معلوماتية فقط وليست نصيحة استثمارية. البيانات مبنية على تقارير عامة من DLD وشركات استشارية حتى سبتمبر 2026.</p>
+      <p>Built with ❤️ for UAE PropTech • Deployed free on Vercel / GitHub Pages</p>
+    </footer>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
